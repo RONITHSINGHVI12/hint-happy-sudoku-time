@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ModeToggle } from "@/components/mode-toggle";
 import SudokuBoard from "@/components/sudoku/SudokuBoard";
 import { generateSudoku, SudokuPuzzle, Difficulty } from "@/lib/sudoku";
 
@@ -32,8 +33,11 @@ const Sudoku = () => {
       <div className="min-h-screen bg-background p-6">
         <div className="max-w-4xl mx-auto">
           <Card className="mb-6 shadow-elegant animate-float">
-            <CardHeader className="bg-gradient-primary text-white rounded-t-lg">
+            <CardHeader className="bg-gradient-primary text-white rounded-t-lg relative">
               <CardTitle className="text-3xl text-center animate-glow">Sudoku Dashboard</CardTitle>
+              <div className="absolute top-4 right-4">
+                <ModeToggle />
+              </div>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="text-center">
