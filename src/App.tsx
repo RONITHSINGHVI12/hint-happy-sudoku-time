@@ -12,7 +12,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="dark" storageKey="sudoku-ui-theme">
+    <ThemeProvider defaultTheme="light" storageKey="sudoku-ui-theme">
       <TooltipProvider>
         <Toaster />
         <Sonner />
