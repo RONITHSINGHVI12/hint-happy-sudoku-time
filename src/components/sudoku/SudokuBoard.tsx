@@ -121,16 +121,15 @@ const SudokuBoard = ({ puzzle, onHint, onGameComplete }: SudokuBoardProps) => {
       Math.floor(selectedCell.col / 3) === Math.floor(col / 3);
 
     return cn(
-      "w-12 h-12 border border-border flex items-center justify-center text-lg font-semibold cursor-pointer transition-colors",
-      "hover:bg-accent",
+      "w-12 h-12 border border-border flex items-center justify-center text-lg font-semibold cursor-pointer transition-smooth",
+      "hover:bg-accent hover:shadow-soft",
       {
-        "bg-primary text-primary-foreground": isSelected,
-        "bg-muted": isInitial,
-        "bg-destructive/20 text-destructive": hasError,
-        "bg-accent/50": !isSelected && (isInSameRow || isInSameCol || isInSameBox),
+        "bg-primary text-primary-foreground shadow-glow animate-pulse-soft": isSelected,
+        "bg-muted font-bold": isInitial,
+        "bg-destructive/20 text-destructive animate-pulse-soft": hasError,
+        "bg-accent/30": !isSelected && (isInSameRow || isInSameCol || isInSameBox),
         "border-r-2 border-r-primary": col === 2 || col === 5,
         "border-b-2 border-b-primary": row === 2 || row === 5,
-        "font-bold": isInitial,
       }
     );
   };
@@ -138,7 +137,7 @@ const SudokuBoard = ({ puzzle, onHint, onGameComplete }: SudokuBoardProps) => {
   return (
     <div className="flex flex-col items-center space-y-6">
       {/* Sudoku Grid */}
-      <div className="grid grid-cols-9 gap-0 border-2 border-primary rounded-lg overflow-hidden">
+      <div className="grid grid-cols-9 gap-0 border-2 border-primary rounded-lg overflow-hidden shadow-elegant animate-float">
         {currentBoard.map((row, rowIndex) =>
           row.map((cell, colIndex) => (
             <div
@@ -153,7 +152,7 @@ const SudokuBoard = ({ puzzle, onHint, onGameComplete }: SudokuBoardProps) => {
       </div>
 
       {/* Number Input Buttons */}
-      <div className="grid grid-cols-5 gap-2 w-full max-w-md">
+      <div className="grid grid-cols-5 gap-3 w-full max-w-md">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
           <Button
             key={num}
@@ -161,7 +160,7 @@ const SudokuBoard = ({ puzzle, onHint, onGameComplete }: SudokuBoardProps) => {
             size="lg"
             onClick={() => handleNumberInput(num)}
             disabled={!selectedCell || puzzle.initialBoard[selectedCell.row][selectedCell.col] !== 0}
-            className="h-12"
+            className="h-12 transition-spring hover:shadow-soft"
           >
             {num}
           </Button>
@@ -171,7 +170,7 @@ const SudokuBoard = ({ puzzle, onHint, onGameComplete }: SudokuBoardProps) => {
           size="lg"
           onClick={clearCell}
           disabled={!selectedCell || puzzle.initialBoard[selectedCell.row][selectedCell.col] !== 0}
-          className="h-12"
+          className="h-12 transition-spring hover:shadow-soft"
         >
           Clear
         </Button>
@@ -180,14 +179,14 @@ const SudokuBoard = ({ puzzle, onHint, onGameComplete }: SudokuBoardProps) => {
           size="lg"
           onClick={handleHint}
           disabled={!selectedCell || puzzle.initialBoard[selectedCell.row][selectedCell.col] !== 0}
-          className="h-12 col-span-5"
+          className="h-12 col-span-5 bg-gradient-primary hover:shadow-glow transition-spring"
         >
           💡 Get Hint (Free)
         </Button>
       </div>
 
       {errors.length > 0 && (
-        <div className="text-destructive text-sm text-center">
+        <div className="text-destructive text-sm text-center animate-pulse-soft">
           ⚠️ There are conflicts in your solution. Check highlighted cells.
         </div>
       )}

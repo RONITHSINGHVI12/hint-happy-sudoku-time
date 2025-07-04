@@ -31,9 +31,9 @@ const Sudoku = () => {
     return (
       <div className="min-h-screen bg-background p-6">
         <div className="max-w-4xl mx-auto">
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle className="text-3xl text-center">Sudoku Dashboard</CardTitle>
+          <Card className="mb-6 shadow-elegant animate-float">
+            <CardHeader className="bg-gradient-primary text-white rounded-t-lg">
+              <CardTitle className="text-3xl text-center animate-glow">Sudoku Dashboard</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="text-center">
@@ -43,7 +43,7 @@ const Sudoku = () => {
                     size="lg" 
                     variant="outline"
                     onClick={() => startNewGame("easy")}
-                    className="w-32"
+                    className="w-32 transition-spring hover:shadow-soft"
                   >
                     Easy
                   </Button>
@@ -51,7 +51,7 @@ const Sudoku = () => {
                     size="lg" 
                     variant="default"
                     onClick={() => startNewGame("medium")}
-                    className="w-32"
+                    className="w-32 bg-gradient-primary transition-spring hover:shadow-glow"
                   >
                     Medium
                   </Button>
@@ -59,7 +59,7 @@ const Sudoku = () => {
                     size="lg" 
                     variant="destructive"
                     onClick={() => startNewGame("hard")}
-                    className="w-32"
+                    className="w-32 transition-spring hover:shadow-soft"
                   >
                     Hard
                   </Button>
@@ -67,21 +67,21 @@ const Sudoku = () => {
               </div>
               
               <div className="grid md:grid-cols-3 gap-4 mt-8">
-                <Card>
+                <Card className="shadow-soft hover:shadow-elegant transition-spring">
                   <CardContent className="p-4 text-center">
                     <div className="text-2xl font-bold text-primary">Easy</div>
                     <div className="text-sm text-muted-foreground">45+ clues</div>
                     <div className="text-sm">Perfect for beginners</div>
                   </CardContent>
                 </Card>
-                <Card>
+                <Card className="shadow-soft hover:shadow-elegant transition-spring">
                   <CardContent className="p-4 text-center">
                     <div className="text-2xl font-bold text-primary">Medium</div>
                     <div className="text-sm text-muted-foreground">35-44 clues</div>
                     <div className="text-sm">Good challenge</div>
                   </CardContent>
                 </Card>
-                <Card>
+                <Card className="shadow-soft hover:shadow-elegant transition-spring">
                   <CardContent className="p-4 text-center">
                     <div className="text-2xl font-bold text-primary">Hard</div>
                     <div className="text-sm text-muted-foreground">25-34 clues</div>
@@ -102,11 +102,11 @@ const Sudoku = () => {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Game Board */}
           <div className="flex-1">
-            <Card>
-              <CardHeader>
+            <Card className="shadow-elegant">
+              <CardHeader className="bg-gradient-secondary rounded-t-lg">
                 <div className="flex items-center justify-between">
-                  <CardTitle>Sudoku</CardTitle>
-                  <Badge variant="outline" className="capitalize">
+                  <CardTitle className="text-white">Sudoku</CardTitle>
+                  <Badge variant="outline" className="capitalize bg-white/10 border-white/20 text-white">
                     {difficulty}
                   </Badge>
                 </div>
@@ -118,9 +118,9 @@ const Sudoku = () => {
                   onGameComplete={handleGameComplete}
                 />
                 {isGameComplete && (
-                  <div className="text-center mt-4 p-4 bg-accent rounded-lg">
-                    <h3 className="text-xl font-bold text-accent-foreground">Congratulations!</h3>
-                    <p className="text-accent-foreground">You completed the puzzle!</p>
+                  <div className="text-center mt-4 p-4 bg-gradient-accent rounded-lg animate-glow">
+                    <h3 className="text-xl font-bold text-white">🎉 Congratulations!</h3>
+                    <p className="text-white">You completed the puzzle!</p>
                   </div>
                 )}
               </CardContent>
@@ -129,7 +129,7 @@ const Sudoku = () => {
 
           {/* Side Panel */}
           <div className="w-full lg:w-80 space-y-4">
-            <Card>
+            <Card className="shadow-soft hover:shadow-elegant transition-spring">
               <CardHeader>
                 <CardTitle>Game Stats</CardTitle>
               </CardHeader>
@@ -140,7 +140,7 @@ const Sudoku = () => {
                 </div>
                 <div className="flex justify-between">
                   <span>Hints Used:</span>
-                  <span className="font-mono">{hints}</span>
+                  <span className="font-mono text-primary">{hints}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Hints Available:</span>
@@ -149,29 +149,29 @@ const Sudoku = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="shadow-soft hover:shadow-elegant transition-spring">
               <CardHeader>
                 <CardTitle>Actions</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <Button 
                   onClick={() => startNewGame(difficulty)} 
-                  className="w-full"
+                  className="w-full transition-spring hover:shadow-soft"
                   variant="outline"
                 >
-                  New Game (Same Level)
+                  🎲 Different Game (Same Level)
                 </Button>
                 <Button 
                   onClick={() => setCurrentPuzzle(null)} 
-                  className="w-full"
+                  className="w-full transition-spring hover:shadow-soft"
                   variant="secondary"
                 >
-                  Back to Dashboard
+                  🏠 Back to Dashboard
                 </Button>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="shadow-soft hover:shadow-elegant transition-spring">
               <CardHeader>
                 <CardTitle>How to Play</CardTitle>
               </CardHeader>
